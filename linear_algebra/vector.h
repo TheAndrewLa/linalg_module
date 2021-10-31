@@ -1,11 +1,8 @@
 // by andrew.la
 #pragma once
+#include <math.h>
 #include <stdlib.h>
-#include <malloc.h>
-
-#define float_t double // Our floating point type
-#define allocate_element(size) malloc(size)
-#define allocate_n_elements(n, size) malloc(n * size)
+#include "../core_defs.h"
 
 typedef struct vector2 vec2_t;
 struct vector2 {
@@ -24,7 +21,9 @@ struct vector3 {
  */
 
 vec2_t * vec2_create(float_t x, float_t y);
+vec2_t * vec2_create_const(float_t c);
 vec3_t * vec3_create(float_t x, float_t y, float_t z);
+vec3_t * vec3_create_const(float_t c);
 
 float_t vec2_length(const vec2_t * vec);
 float_t vec3_length(const vec3_t * vec);
@@ -43,7 +42,6 @@ vec3_t * vec3_div(const vec3_t * vec1, const vec3_t * vec2);
 
 float_t vec2_dotproduct(const vec2_t * vec1, const vec2_t * vec2);
 float_t vec3_dotproduct(const vec3_t * vec1, const vec3_t * vec2);
-
 vec3_t * vec3_crossproduct(const vec3_t * vec1, const vec3_t * vec2);
 
 vec2_t * vec2_lerp(const vec2_t * vec1, const vec2_t * vec2, float k); // linear interpolation
