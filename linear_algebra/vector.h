@@ -4,14 +4,17 @@
 #include <stdlib.h>
 #include "../core_defs.h"
 
+#define MAX(a, b) ((a > b)? a : b)
+#define MIN(a, b) ((a > b)? b : a)
+
 typedef struct vector2 vec2_t;
 struct vector2 {
-    float_t x, y;
+    float_point_value x, y;
 };
 
 typedef struct vector3 vec3_t;
 struct vector3 {
-    float_t x, y, z;
+    float_point_value x, y, z;
 };
 
 /*
@@ -20,13 +23,13 @@ struct vector3 {
  * -----------------------------
  */
 
-vec2_t * vec2_create(float_t x, float_t y);
-vec2_t * vec2_create_const(float_t c);
-vec3_t * vec3_create(float_t x, float_t y, float_t z);
-vec3_t * vec3_create_const(float_t c);
+vec2_t * vec2_create(float_point_value x, float_point_value y);
+vec2_t * vec2_create_const(float_point_value c);
+vec3_t * vec3_create(float_point_value x, float_point_value y, float_point_value z);
+vec3_t * vec3_create_const(float_point_value c);
 
-float_t vec2_length(const vec2_t * vec);
-float_t vec3_length(const vec3_t * vec);
+float_point_value vec2_length(const vec2_t * vec);
+float_point_value vec3_length(const vec3_t * vec);
 
 vec2_t * vec2_add(const vec2_t * vec1, const vec2_t * vec2);
 vec3_t * vec3_add(const vec3_t * vec1, const vec3_t * vec2);
@@ -40,8 +43,8 @@ vec3_t * vec3_mul(const vec3_t * vec1, const vec3_t * vec2);
 vec2_t * vec2_div(const vec2_t * vec1, const vec2_t * vec2);
 vec3_t * vec3_div(const vec3_t * vec1, const vec3_t * vec2);
 
-float_t vec2_dotproduct(const vec2_t * vec1, const vec2_t * vec2);
-float_t vec3_dotproduct(const vec3_t * vec1, const vec3_t * vec2);
+float_point_value vec2_dotproduct(const vec2_t * vec1, const vec2_t * vec2);
+float_point_value vec3_dotproduct(const vec3_t * vec1, const vec3_t * vec2);
 vec3_t * vec3_crossproduct(const vec3_t * vec1, const vec3_t * vec2);
 
 vec2_t * vec2_lerp(const vec2_t * vec1, const vec2_t * vec2, float k); // linear interpolation

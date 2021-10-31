@@ -1,2 +1,2 @@
-#define float_t double
+#define float_point_value double
 #define new(size) malloc(size)
