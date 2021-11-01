@@ -6,29 +6,46 @@
  * later, "new" macros will be readdressing us to custom memory allocator
  */
 vec2_t * vec2_create(float_point_value x, float_point_value y) {
-    vec2_t * ptr = new(sizeof(vec2_t));
+    vec2_t * ptr = (vec2_t *) new(sizeof(vec2_t));
     ptr->x = x;
     ptr->y = y;
     return ptr;
 }
 vec3_t * vec3_create(float_point_value x, float_point_value y, float_point_value z) {
-    vec3_t * ptr = new(sizeof(vec3_t));
+    vec3_t * ptr = (vec3_t *) new(sizeof(vec3_t));
     ptr->x = x;
     ptr->y = y;
     ptr->z = z;
     return ptr;
 }
 vec2_t * vec2_create_const(float_point_value c) {
-    vec2_t * ptr = new(sizeof(vec2_t));
+    vec2_t * ptr = (vec2_t *) new(sizeof(vec2_t));
     ptr->x = c;
     ptr->y = c;
     return ptr;
 }
 vec3_t * vec3_create_const(float_point_value c) {
-    vec3_t * ptr = new(sizeof(vec3_t));
+    vec3_t * ptr = (vec3_t *) new(sizeof(vec3_t));
     ptr->x = c;
     ptr->y = c;
     ptr->z = c;
+    return ptr;
+}
+
+/*
+ * Vector's copy functions
+ */
+vec2_t * vec2_copy(const vec2_t * vector) {
+    vec2_t * ptr = new(sizeof(vec2_t));
+    ptr->x = vector->x;
+    ptr->y = vector->y;
+    return ptr;
+}
+vec3_t * vec3_copy(const vec3_t * vector) {
+    vec3_t * ptr = new(sizeof(vec3_t));
+    ptr->x = vector->x;
+    ptr->y = vector->y;
+    ptr->z = vector->z;
     return ptr;
 }
 
@@ -70,6 +87,13 @@ vec3_t * vec3_div(const vec3_t * vec1, const vec3_t * vec2) {
     return vec3_create(vec1->x / vec2->x, vec1->y / vec2->y, vec1->z / vec2->z);
 }
 
+vec2_t * vec2_scale(const vec2_t * vec, float_point_value s) {
+    return vec2_create(vec->x * s, vec->y * s);
+}
+vec3_t * vec3_scale(const vec3_t * vec, float_point_value s) {
+    return vec3_create(vec->x * s, vec->y * s, vec->z * s);
+}
+
 /*
  * Dot and cross products of vectors
  */
@@ -92,10 +116,10 @@ vec3_t * vec3_crossproduct(const vec3_t * vec1, const vec3_t * vec2) {
  * Normalization functions
  */
 vec2_t * vec2_normalize(const vec2_t * vec) {
-    return vec2_div(vec, vec2_create_const(vec2_length(vec)));
+    return vec2_scale(vec, 1 / vec2_length(vec));
 }
 vec3_t * vec3_normalize(const vec3_t * vec) {
-    return vec3_div(vec, vec3_create_const(vec3_length(vec)));
+    return vec3_scale(vec, 1 / vec3_length(vec));
 }
 
 /*

@@ -28,6 +28,9 @@ vec2_t * vec2_create_const(float_point_value c);
 vec3_t * vec3_create(float_point_value x, float_point_value y, float_point_value z);
 vec3_t * vec3_create_const(float_point_value c);
 
+vec2_t * vec2_copy(const vec2_t * vector);
+vec3_t * vec3_copy(const vec3_t * vector);
+
 float_point_value vec2_length(const vec2_t * vec);
 float_point_value vec3_length(const vec3_t * vec);
 
@@ -42,6 +45,9 @@ vec3_t * vec3_mul(const vec3_t * vec1, const vec3_t * vec2);
 
 vec2_t * vec2_div(const vec2_t * vec1, const vec2_t * vec2);
 vec3_t * vec3_div(const vec3_t * vec1, const vec3_t * vec2);
+
+vec2_t * vec2_scale(const vec2_t * vec, float_point_value s);
+vec3_t * vec3_scale(const vec3_t * vec, float_point_value s);
 
 float_point_value vec2_dotproduct(const vec2_t * vec1, const vec2_t * vec2);
 float_point_value vec3_dotproduct(const vec3_t * vec1, const vec3_t * vec2);
